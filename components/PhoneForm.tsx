@@ -26,6 +26,7 @@ export default function PhoneForm() {
           body: JSON.stringify({
             phone: fullPhone,
             vertical: "immobiliare",
+            preferred_channel: "Phone call",
             source: "landing-meridiana",
           }),
         }

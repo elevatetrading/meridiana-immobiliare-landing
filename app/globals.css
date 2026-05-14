@@ -2,6 +2,19 @@
 @tailwind components;
 @tailwind utilities;
 
+@keyframes quiz-slide-from-right {
+  from { opacity: 0; transform: translateX(20px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes quiz-slide-from-left {
+  from { opacity: 0; transform: translateX(-20px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+
+.quiz-enter-forward { animation: quiz-slide-from-right 0.2s ease-out; }
+.quiz-enter-back    { animation: quiz-slide-from-left  0.2s ease-out; }
+
 *, *::before, *::after {
   box-sizing: border-box;
   margin: 0;

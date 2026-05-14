@@ -1,12 +1,17 @@
+"use client";
+
+import { useState } from "react";
 import PhoneForm from "@/components/PhoneForm";
+import Quiz from "@/components/Quiz";
 
 export default function Home() {
+  const [quizOpen, setQuizOpen] = useState(false);
+
   return (
     <>
       {/* ─── Navbar ───────────────────────────────────────────────────────── */}
       <nav className="w-full px-6 py-5">
         <div className="max-w-5xl mx-auto flex items-center justify-between">
-          {/* Logo */}
           <span className="flex items-center gap-2 text-[13px] font-semibold tracking-tight">
             <span
               className="w-2 h-2 rounded-full bg-violet-500 inline-block shrink-0"
@@ -15,7 +20,6 @@ export default function Home() {
             Meridiana Immobiliare
           </span>
 
-          {/* Info — desktop only */}
           <div className="hidden sm:flex items-center gap-6 text-[13px] text-gray-400">
             <span className="flex items-center gap-1.5">
               <span
@@ -49,7 +53,8 @@ export default function Home() {
         </div>
 
         {/* Headline */}
-        <h1 className="font-bold leading-[1.06] tracking-[-0.03em] text-[#111111] max-w-[750px] mb-5"
+        <h1
+          className="font-bold leading-[1.06] tracking-[-0.03em] text-[#111111] max-w-[750px] mb-5"
           style={{ fontSize: "clamp(2.6rem, 7.5vw, 5.2rem)" }}
         >
           Your home in Palermo,{" "}
@@ -79,15 +84,11 @@ export default function Home() {
           style={{ width: 240, height: 240 }}
           aria-hidden="true"
         >
-          {/* Glow halo */}
           <span className="absolute inset-[30px] rounded-full bg-violet-100 blur-3xl opacity-70" />
-
           {/*
-            Replace this emoji with your 3D keys render:
-            → Save PNG to /public/images/keys-3d.png
-            → Then swap this <span> for:
-               <Image src="/images/keys-3d.png" alt="Keys" width={220} height={220}
-                      className="relative drop-shadow-2xl" priority />
+            Replace with 3D keys image:
+            <Image src="/images/keys-3d.png" alt="Keys" width={220} height={220}
+                   className="relative drop-shadow-2xl" priority />
           */}
           <span
             className="relative select-none"
@@ -107,15 +108,18 @@ export default function Home() {
           <PhoneForm />
         </div>
 
-        {/* Secondary CTA */}
-        {/* TODO: replace href="#" with the actual GHL form URL when available */}
-        <a
-          href="#"
+        {/* Secondary CTA → opens quiz */}
+        <button
+          type="button"
+          onClick={() => setQuizOpen(true)}
           className="text-[13px] text-gray-400 hover:text-gray-600 transition-colors duration-150"
         >
           Prefer a quick quiz?&nbsp;→
-        </a>
+        </button>
       </main>
+
+      {/* ─── Quiz modal ───────────────────────────────────────────────────── */}
+      {quizOpen && <Quiz onClose={() => setQuizOpen(false)} />}
     </>
   );
 }
